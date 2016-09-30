@@ -1,0 +1,17 @@
+## Interface: 70000
+
+## Title: Lib: TTScan-1.0
+## Version: v1
+## Notes: Very bare bones tooltip scanning
+## Author: Oleg "Rowaa[SR13]" Volkov
+
+## LoadOnDemand: 
+## LoadWith: 
+## Dependencies: 
+## OptionalDeps: LibStub
+
+## SavedVariables: 
+## SavedVariablesPerCharacter: 
+
+LibStub.lua
+LibTTScan-1.0.lua
