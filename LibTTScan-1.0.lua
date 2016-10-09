@@ -98,7 +98,9 @@ function lib.GetItemArtifactPower(item_id, only_type)
    end
 
    for line = start_scan_line, max_lines do
-      local _, _, amount = sfind(fs_GetText(tt_l[line]), "(%d+)")
-      if amount then return amount + 0 end
+      local _, _, amount = sfind(fs_GetText(tt_l[line]), "(%d[%d,]+)")
+      if amount then
+         return gsub(amount, ',', '') + 0
+      end
    end
 end
