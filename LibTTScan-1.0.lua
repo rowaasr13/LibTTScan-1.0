@@ -7,6 +7,7 @@ if not lib then return end
 local ARTIFACT_POWER = ARTIFACT_POWER
 local CreateFrame = CreateFrame
 local GetItemInfo = GetItemInfo
+local LE_ITEM_CLASS_CONSUMABLE = LE_ITEM_CLASS_CONSUMABLE
 local ITEM_SOULBOUND = ITEM_SOULBOUND
 local WorldFrame = WorldFrame
 local dump = DevTools_Dump
@@ -61,7 +62,6 @@ function lib.GetCreatureName(creature_id)
 end
 
 local is_consumable_artifact_power = {}
-local item_class_id_consumable = 0
 local colored_artifact_power_tt_text = "^|c" .. ("%x"):rep(8) .. ARTIFACT_POWER .. "|r$"
 --- Extracts amount of Artifact Power granted by item from tooltip.
 -- @param item_id ID (strictly numerical) of the item.
@@ -73,7 +73,7 @@ function lib.GetItemArtifactPower(item_id, only_type)
    local tooltip_set, max_lines
    if start_scan_line == nil then   
       local _, _, _, _, _, _, _, _, _, _, _, itemClassID = GetItemInfo(item_id)
-      if itemClassID ~= item_class_id_consumable then return end
+      if itemClassID ~= LE_ITEM_CLASS_CONSUMABLE then return end
       tt_SetOwner(tt, WorldFrame, "ANCHOR_NONE")
       tt_ClearLines(tt)
       tt_SetItemByID(tt, item_id)
