@@ -33,6 +33,7 @@ local tt_ClearLines = tt.ClearLines
 local tt_SetHyperlink = tt.SetHyperlink
 local tt_SetItemByID = tt.SetItemByID
 local tt_NumLines = tt.NumLines
+local tt_SetMerchantItem = tt.SetMerchantItem
 local tt_l_1 = tt_l[1]
 local fs_GetText = tt_l[1].GetText
 
@@ -102,5 +103,17 @@ function lib.GetItemArtifactPower(item_id, only_type)
       if amount then
          return gsub(amount, '[^%d]', '') + 0
       end
+   end
+end
+
+-- /run LibStub("LibTTScan-1.0").IsMerchantItemAlreadyKnown(i)
+-- @param index - item index to check (number)
+function lib.IsMerchantItemAlreadyKnown(index)
+   -- tt_SetOwner(tt, WorldFrame, "ANCHOR_NONE")
+   -- tt_ClearLines(tt)
+   tt_SetMerchantItem(tt, index)
+   local max_lines = tt_NumLines(tt)
+   for line = max_lines, 2, -1 do
+      if fs_GetText(tt_l[line]) == ITEM_SPELL_KNOWN then return true end
    end
 end
