@@ -1,7 +1,7 @@
 ## Interface: 70000
 
 ## Title: Lib: TTScan-1.0
-## Version: v1
+## Version: v3
 ## Notes: Very bare bones tooltip scanning
 ## Author: Oleg "Rowaa[SR13]" Volkov
 
