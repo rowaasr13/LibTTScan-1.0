@@ -1,4 +1,4 @@
-local MAJOR, MINOR = "LibTTScan-1.0", 1
+local MAJOR, MINOR = "LibTTScan-1.0", 4
 assert(LibStub, MAJOR .. " requires LibStub")
 local lib = LibStub:NewLibrary(MAJOR, MINOR)
 if not lib then return end

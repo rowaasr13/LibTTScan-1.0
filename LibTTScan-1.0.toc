@@ -1,8 +1,8 @@
 ## Interface: 70100
 
 ## Title: Lib: TTScan-1.0
-## Version: v3
-## Notes: Very bare bones tooltip scanning
+## Version: v4
+## Notes: Lightweight tooltip scanning
 ## Author: Oleg "Rowaa[SR13]" Volkov
 
 ## LoadOnDemand: 1
