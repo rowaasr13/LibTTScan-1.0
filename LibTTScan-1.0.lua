@@ -75,7 +75,7 @@ function lib.GetItemArtifactPower(item_id, only_type)
    if start_scan_line == false then return end
 
    local tooltip_set, max_lines
-   if start_scan_line == nil then   
+   if start_scan_line == nil then
       local _, _, _, _, _, _, _, _, _, _, _, itemClassID = GetItemInfo(item_id)
       if itemClassID ~= LE_ITEM_CLASS_CONSUMABLE then return end
       tt_SetOwner(tt, WorldFrame, "ANCHOR_NONE")
