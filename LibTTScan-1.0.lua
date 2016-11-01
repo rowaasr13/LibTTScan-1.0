@@ -68,6 +68,7 @@ end
 local is_consumable_artifact_power = { [139591] = 3 }
 local colored_artifact_power_tt_text = "^|c" .. ("%x"):rep(8) .. ARTIFACT_POWER .. "|r$"
 --- Extracts amount of Artifact Power granted by item from tooltip.
+-- /dump LibStub:GetLibrary("LibTTScan-1.0").GetItemArtifactPower(item_id)
 -- @param item_id ID (strictly numerical) of the item.
 -- @param only_type If true, only check if item is an Artifact Power consumable and return bool instead of AP amount.
 function lib.GetItemArtifactPower(item_id, only_type)
@@ -102,9 +103,12 @@ function lib.GetItemArtifactPower(item_id, only_type)
    end
 
    for line = start_scan_line, max_lines do
-      local _, _, amount = sfind(fs_GetText(tt_l[line]), "(%d[%d,.%s]+)")
-      if amount then
-         return gsub(amount, '[^%d]', '') + 0
+      local text = fs_GetText(tt_l[line])
+      if sfind(text, ITEM_SPELL_TRIGGER_ONUSE) and sfind(text, ARTIFACT_POWER) then
+         local _, _, amount = sfind(text, "(%d[%d,.%s]+)")
+         if amount then
+            return gsub(amount, '[^%d]', '') + 0
+         end
       end
    end
 end
