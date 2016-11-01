@@ -65,7 +65,7 @@ function lib.GetCreatureName(creature_id)
    return fs_GetText(tt_l_1)
 end
 
-local is_consumable_artifact_power = {}
+local is_consumable_artifact_power = { [139591] = 3 }
 local colored_artifact_power_tt_text = "^|c" .. ("%x"):rep(8) .. ARTIFACT_POWER .. "|r$"
 --- Extracts amount of Artifact Power granted by item from tooltip.
 -- @param item_id ID (strictly numerical) of the item.
