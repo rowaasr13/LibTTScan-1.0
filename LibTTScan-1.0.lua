@@ -19,7 +19,7 @@ local sfind = string.find
 
 -- Custom tooltip for fast tooltip parsing
 local tt, tt_l, tt_r = CreateFrame("GameTooltip"), {}, {}
-for idx = 1, 30 do
+for idx = 1, 70 do
     tt_l[idx], tt_r[idx] = tt:CreateFontString(), tt:CreateFontString()
     tt_l[idx]:SetFontObject(GameFontNormal)
     tt_r[idx]:SetFontObject(GameFontNormal)
