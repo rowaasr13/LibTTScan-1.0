@@ -1,11 +1,11 @@
-## Interface: 70000
+## Interface: 70100
 
 ## Title: Lib: TTScan-1.0
 ## Version: v3
 ## Notes: Very bare bones tooltip scanning
 ## Author: Oleg "Rowaa[SR13]" Volkov
 
-## LoadOnDemand: 
+## LoadOnDemand: 1
 ## LoadWith: 
 ## Dependencies: 
 ## OptionalDeps: LibStub
