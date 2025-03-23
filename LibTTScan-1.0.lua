@@ -6,15 +6,16 @@ if not lib then return end
 -- [AUTOLOCAL START]
 local ARTIFACT_POWER = ARTIFACT_POWER
 local CreateFrame = CreateFrame
+local dump = DevTools_Dump
 local GetItemInfo = GetItemInfo
+local gsub = string.gsub
+local IsArtifactPowerItem = IsArtifactPowerItem
 local ITEM_SOULBOUND = ITEM_SOULBOUND
 local ITEM_SPELL_KNOWN = ITEM_SPELL_KNOWN
 local ITEM_SPELL_TRIGGER_ONUSE = ITEM_SPELL_TRIGGER_ONUSE
 local LE_ITEM_CLASS_CONSUMABLE = LE_ITEM_CLASS_CONSUMABLE
-local WorldFrame = WorldFrame
-local dump = DevTools_Dump
-local gsub = string.gsub
 local sfind = string.find
+local WorldFrame = WorldFrame
 -- [AUTOLOCAL END]
 
 -- Custom tooltip for fast tooltip parsing
