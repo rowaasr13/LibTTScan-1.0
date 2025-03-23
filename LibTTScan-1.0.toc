@@ -1,4 +1,5 @@
-## Interface: 70100
+## Interface: 110100
+## X-Curse-Project-ID: libttscan-1
 
 ## Title: Lib: TTScan-1.0
 ## Version: v4
