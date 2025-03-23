@@ -127,3 +127,11 @@ function lib.IsMerchantItemAlreadyKnown(index)
       if line.leftText == ITEM_SPELL_KNOWN then return true end
    end
 end
+
+function lib.GetMerchantItemPetSpeciesID(index)
+   local item_id = GetMerchantItemID(index)
+   if not item_id then return end
+
+   local name, icon, petType, creatureID, sourceText, description, isWild, canBattle, tradeable, unique, obtainable, displayID, speciesID = C_PetJournal.GetPetInfoByItemID(item_id)
+   return speciesID
+end
