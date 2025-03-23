@@ -113,14 +113,17 @@ function lib.GetItemArtifactPower(item_id, only_type)
    end
 end
 
--- /run LibStub("LibTTScan-1.0").IsMerchantItemAlreadyKnown(i)
--- @param index - item index to check (number)
+-- /run LibStub("LibTTScan-1.0").IsMerchantItemAlreadyKnown(index)
+-- @param index - merchant item index to check (number)
 function lib.IsMerchantItemAlreadyKnown(index)
-   -- tt_SetOwner(tt, WorldFrame, "ANCHOR_NONE")
-   -- tt_ClearLines(tt)
-   tt_SetMerchantItem(tt, index)
-   local max_lines = tt_NumLines(tt)
-   for line = max_lines, 2, -1 do
-      if fs_GetText(tt_l[line]) == ITEM_SPELL_KNOWN then return true end
+   local tooltip_data = C_TooltipInfo.GetMerchantItem(index)
+   if not tooltip_data then return end
+
+   local lines = tooltip_data.lines
+   if not lines then return end
+
+   for idx = #lines, 2, -1 do -- "Already known" is likely to be encountered at bottom
+      local line = lines[idx]
+      if line.leftText == ITEM_SPELL_KNOWN then return true end
    end
 end
