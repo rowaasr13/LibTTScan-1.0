@@ -128,6 +128,57 @@ function lib.IsMerchantItemAlreadyKnown(index)
    end
 end
 
+-- /run LibStub("LibTTScan-1.0").DoesMerchantItemContainsUncollectedAppearances(index)
+-- @param index - merchant item index to check (number)
+function lib.DoesMerchantItemContainsUncollectedAppearances(index)
+   -- Tooltip scan
+   local res = lib.DoesMerchantItemTooltipContainsUncollectedAppearances(index)
+   if res then return res end
+
+   -- Ensemble content scan
+   local item_id = GetMerchantItemID(index)
+   if item_id then return lib.DoesItemContainsUncollectedAppearances(item_id) end
+end
+
+local contains_uncollected_patterns = {
+   '^' .. (TRANSMOG_SET_PARTIALLY_KNOWN_CLASS:gsub("%%[%d$]?[%d$]?d", "%%d+")),
+   '^' .. (TRANSMOG_SET_PARTIALLY_KNOWN_MIX  :gsub("%%[%d$]?[%d$]?d", "%%d+")),
+}
+-- /run LibStub("LibTTScan-1.0").DoesMerchantItemTooltipContainsUncollectedAppearances(index)
+-- @param index - merchant item index to check (number)
+local contains_uncollected_patterns_cnt = #contains_uncollected_patterns
+function lib.DoesMerchantItemTooltipContainsUncollectedAppearances(index)
+   local tooltip_data = C_TooltipInfo.GetMerchantItem(index)
+   if not tooltip_data then return end
+
+   local lines = tooltip_data.lines
+   if not lines then return end
+
+   for idx = #lines, 2, -1 do -- "contains uncollected" is likely to be encountered at bottom
+      local line = lines[idx]
+      local left_text = line.leftText
+      for pattern_idx = 1, contains_uncollected_patterns_cnt do
+         if left_text:match(contains_uncollected_patterns[pattern_idx]) then return true end
+      end
+   end
+end
+
+function lib.DoesItemContainsUncollectedAppearances(item)
+   if not item then return end
+   local setID = C_Item.GetItemLearnTransmogSet(item)
+   if not setID then return end
+
+   local sources = C_TransmogSets.GetAllSourceIDs(setID)
+   for idx = 1, #sources do
+      local sourceID = sources[idx]
+      local _1, _2, _3, _4, isCollected = C_TransmogCollection.GetAppearanceSourceInfo(sourceID)
+      if not isCollected then
+         local info = C_TransmogCollection.GetSourceInfo(sourceID)
+         if not info.isCollected then return true end
+      end
+   end
+end
+
 function lib.GetMerchantItemPetSpeciesID(index)
    local item_id = GetMerchantItemID(index)
    if not item_id then return end
